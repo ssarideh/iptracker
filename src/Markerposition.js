@@ -4,7 +4,14 @@ import icon from "./icon";
 
 const Markerposition = ({ address }) => {
   const position = useMemo(() => {
-    return [address?.location?.lat, address?.location?.lng];
+    const lat = address?.location?.lat;
+    const lng = address?.location?.lng;
+
+    if (lat !== undefined && lng !== undefined) {
+      return [lat, lng];
+    }
+
+    return [0, 0];
   }, [address?.location?.lat, address?.location?.lng]);
 
   const map = useMap();
